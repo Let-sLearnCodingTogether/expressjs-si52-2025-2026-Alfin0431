@@ -1,7 +1,7 @@
 import { render } from "ejs"
 import express from "express"
 import * as profileController from "../controller/profileController.js"
-import * as profileController1 from "../controller/profileController1.js"
+import * as profileCont from "../controller/profileCont.js"
 
 const web = express.Router()
 
@@ -11,6 +11,6 @@ web.get('/', (req,res) => {
 
 web.get('/:username', profileController.publicProfile)
 
-web.get('/profile/:username', profileController1.publicProfile1)
+web.get('/profile/:username', profileCont.publicProfile)
 
 export default web
