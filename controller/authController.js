@@ -1,5 +1,6 @@
-import { hash } from "bcrypt";
+import {hash} from "../utils/hashUtil.js"
 import UserModel from "../models/userModel.js";
+import { compare } from "bcrypt";
 
 export const register = async (req, res) => {
     try {
@@ -47,7 +48,7 @@ export const register = async (req, res) => {
         }
 
         //Membandingkan password yang ada didalam db dengan request
-        if (user.password == loginData.password){
+        if (compare(loginData.password, user,password)){
             return res.status(200).json({
                 message : "Login Berhasil",
                 data : {
