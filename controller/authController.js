@@ -1,6 +1,6 @@
-import {hash} from "../utils/hashUtil.js"
+import {compare, hash} from "../utils/hashUtil.js";
 import UserModel from "../models/userModel.js";
-import { compare } from "bcrypt";
+import {jwtSignUtil} from "../utils/jwtSignUtil.js";
 
 export const register = async (req, res) => {
     try {
@@ -48,13 +48,13 @@ export const register = async (req, res) => {
         }
 
         //Membandingkan password yang ada didalam db dengan request
-        if (compare(loginData.password, user,password)){
+        if (compare(loginData.password, user.password)){
             return res.status(200).json({
                 message : "Login Berhasil",
                 data : {
                     username : user.username,
                     email : user.email,
-                    token : "TOKEN"
+                    token : jwtSignUtil (user) // Untuk Melakukan Sign JWT TOKEN (Tambahkan jg di utils)
                 }
             })
         }
@@ -63,9 +63,6 @@ export const register = async (req, res) => {
             message : "Login Gagal",
             data :null
         })
-            
-        
-        
 
     } catch (error) {
         res.status(500).json({
