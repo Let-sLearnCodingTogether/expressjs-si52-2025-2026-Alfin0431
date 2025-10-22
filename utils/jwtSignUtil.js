@@ -6,8 +6,8 @@ export const jwtSignUtil = (user) => {
         email : user.email
     }
 
-    const expiresIn = {
+    const options = {
         expiresIn :'1h'
     }
-    return jwt.sign(payload, "JWT_SECRET_KEY, expiresIn")
+    return jwt.sign(payload, "JWT_SECRET_KEY", options)
 }

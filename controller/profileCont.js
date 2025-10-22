@@ -6,5 +6,8 @@ export const publicProfile = (req,res) => {
         username : username,
         bio : "Hello!"
     })
-
 }
+
+
+
+
